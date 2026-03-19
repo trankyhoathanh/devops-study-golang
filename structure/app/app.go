@@ -1,6 +1,7 @@
 package app
 
 import (
+	"devops-study-golang/pkg"
 	"devops-study-golang/structure/features/health"
 )
 
@@ -8,7 +9,7 @@ type App struct {
 	HealthHandler  *health.Handler
 }
 
-func New() (*App, error) {
+func New(cfg *pkg.Config) (*App, error) {
 	healthHandler := health.NewHandler()
 
 	app := &App{

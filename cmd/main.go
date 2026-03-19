@@ -5,6 +5,7 @@ import (
 	"fmt"
 	"log"
 
+	"devops-study-golang/pkg"
 	"devops-study-golang/structure/app"
 	"devops-study-golang/structure/router"
 
@@ -12,7 +13,9 @@ import (
 )
 
 func main() {
-	app, err := app.New()
+	cfg := pkg.LoadConfig()
+
+	app, err := app.New(cfg)
 	if err != nil {
 		log.Fatal("Failed to initialize app:", err)
 	}
@@ -34,7 +37,7 @@ func main() {
 		NoDefaultContentType:  true,
 	}
 
-	fmt.Printf("🚀 fasthttp server running")
+	fmt.Printf("🚀 fasthttp server running : %s", cfg.ENV)
 	if err := server.ListenAndServe(":" + port); err != nil {
 		log.Fatal("Failed to start server:", err)
 	}
