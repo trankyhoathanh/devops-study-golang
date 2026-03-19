@@ -10,7 +10,7 @@ type App struct {
 }
 
 func New(cfg *pkg.Config) (*App, error) {
-	healthHandler := health.NewHandler()
+	healthHandler := health.NewHandler(cfg)
 
 	app := &App{
 		HealthHandler: healthHandler,
